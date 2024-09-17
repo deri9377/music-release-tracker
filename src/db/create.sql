@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS artists (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  spotify_id VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS user_artists (
+  user_id INTEGER REFERENCES users(id),
+  artist_id INTEGER REFERENCES artists(id),
+  PRIMARY KEY (user_id, artist_id)
+);
